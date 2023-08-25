@@ -19,7 +19,7 @@ public class Customer {
     private String customerAddress;
     @Column(name="customer_salary")
     private double customerSalary;
-    @Column(name="contact_number", columnDefinition = "JSON")
+    @Column(name="contact_number", length = 10)
     private String contactNumber;
     @Column(name="customer_nic")
     private String customerNIC;
