@@ -25,6 +25,10 @@ public class CustomerServiceIMPL implements CustomerService {
         customerRepo.save(customer);
         return customerDTO.getCustomerName();
     }
+    @Override
+    public String CustomerDelete(CustomerDTO customerDTO){
+        return null;
+    }
 }
 
 

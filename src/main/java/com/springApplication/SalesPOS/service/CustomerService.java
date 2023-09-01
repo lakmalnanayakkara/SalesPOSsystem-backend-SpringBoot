@@ -6,4 +6,5 @@ public interface CustomerService {
     public String CustomerSave(CustomerDTO customerDTO);
 
 
+    String CustomerDelete(CustomerDTO customerDTO);
 }
