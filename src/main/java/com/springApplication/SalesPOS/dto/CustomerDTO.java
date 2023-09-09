@@ -1,7 +1,5 @@
 package com.springApplication.SalesPOS.dto;
 
-import jakarta.persistence.Column;
-
 public class CustomerDTO {
     private int customerID;
     private String customerName;
@@ -78,5 +76,18 @@ public class CustomerDTO {
 
     public void setState(boolean state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDTO{" +
+                "customerID=" + customerID +
+                ", customerName='" + customerName + '\'' +
+                ", customerAddress='" + customerAddress + '\'' +
+                ", customerSalary=" + customerSalary +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", customerNIC='" + customerNIC + '\'' +
+                ", state=" + state +
+                '}';
     }
 }

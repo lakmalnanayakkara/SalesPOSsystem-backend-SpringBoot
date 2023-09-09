@@ -1,18 +1,14 @@
 package com.springApplication.SalesPOS.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="customer")
 public class Customer {
     @Id
     @Column(name="customer_id", length=20)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int customerID;
     @Column(name="customer_name", length=50, nullable = false)
     private String customerName;
@@ -94,5 +90,18 @@ public class Customer {
 
     public void setState(boolean state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerID=" + customerID +
+                ", customerName='" + customerName + '\'' +
+                ", customerAddress='" + customerAddress + '\'' +
+                ", customerSalary=" + customerSalary +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", customerNIC='" + customerNIC + '\'' +
+                ", state=" + state +
+                '}';
     }
 }
