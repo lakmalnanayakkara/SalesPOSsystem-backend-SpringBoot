@@ -5,34 +5,35 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="item")
-@NoArgsConstructor
+@Table(name = "item")
 @AllArgsConstructor
+@NoArgsConstructor
+/*@Setter
 @Getter
-@Setter
-@ToString
+@ToString*/
+@Data
 public class Item {
     @Id
-    @Column(name = "item_id", length = 20)
+    @Column(name = "item_id", length = 100)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ItemID;
+    private int itemID;
 
-    @Column(name = "item_name",length = 20, nullable = false)
-    private String ItemName;
+    @Column(name = "item_name",length = 50, nullable = false)
+    private String itemName;
 
-    @Column(name = "unit_type", length = 20, nullable = false)
     @Enumerated(EnumType.STRING)
-    private MeasuringUnitType measuringUnitTYpe;
+    @Column(name = "unit_type", length = 10, nullable = false)
+    private MeasuringUnitType measuringUnitType;
 
-    @Column(name = "balance_qty", length = 20, nullable = false)
-    private double BalanceQty;
+    @Column(name = "balance_qty", length = 100, nullable = false)
+    private double balanceQty;
 
-    @Column(name = "supplier_price", length = 20, nullable = false)
-    private double SupplierPrice;
+    @Column(name = "supplier_price")
+    private double supplierPrice;
 
-    @Column(name = "selling_price", length = 20, nullable = false)
-    private double SellingPrice;
+    @Column(name = "seller_price")
+    private double sellerPrice;
 
-    @Column(name = "state", columnDefinition = "TINYINT default 0")
-    private boolean ActiveState;
+    @Column(name = "active_state", columnDefinition = "TINYINT default 0")
+    private boolean activeState;
 }
