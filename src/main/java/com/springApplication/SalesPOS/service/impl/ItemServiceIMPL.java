@@ -6,6 +6,7 @@ import com.springApplication.SalesPOS.entity.Customer;
 import com.springApplication.SalesPOS.entity.Item;
 import com.springApplication.SalesPOS.repo.ItemRepo;
 import com.springApplication.SalesPOS.service.ItemService;
+import com.springApplication.SalesPOS.util.mappers.ItemMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -20,6 +21,9 @@ public class ItemServiceIMPL implements ItemService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private ItemMapper itemMapper;
 
     @Override
     public String saveItem(ItemSaveRequestDTO itemSaveRequestDTO) {
@@ -41,6 +45,16 @@ public class ItemServiceIMPL implements ItemService {
         }else {
             throw new DuplicateKeyException(itemName+" "+"Not Active");
         }
+    }
+
+    @Override
+    public List<ItemGetResponseDTO> getItemListByNameWithMappsStruct(String itemName) {
+        List<Item> item = itemRepo.getItemListByItemName(itemName);
+        if(item.size()>0){
+            List<ItemGetResponseDTO> itemGetResponseDTOList = itemMapper.entityToItemDTOList(item);
+            return itemGetResponseDTOList;
+        }
+        throw new DuplicateKeyException(itemName+" "+"Not Active");
     }
 
 }

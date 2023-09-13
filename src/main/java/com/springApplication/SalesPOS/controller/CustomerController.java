@@ -3,7 +3,10 @@ package com.springApplication.SalesPOS.controller;
 import com.springApplication.SalesPOS.dto.CustomerDTO;
 import com.springApplication.SalesPOS.dto.request.CustomerUpdateDTO;
 import com.springApplication.SalesPOS.service.CustomerService;
+import com.springApplication.SalesPOS.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +23,7 @@ public class CustomerController {
         customerService.CustomerSave(customerDTO);
         return "Saved";
     }
+
     @PutMapping("/update")
     public String customerUpdate(@RequestBody CustomerUpdateDTO customerUpdateDTO){
         String message = customerService.CustomerUpdate(customerUpdateDTO);

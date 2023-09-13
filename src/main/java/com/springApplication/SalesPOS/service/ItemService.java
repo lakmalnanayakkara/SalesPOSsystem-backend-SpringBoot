@@ -10,4 +10,6 @@ public interface ItemService {
 
 
     ItemGetResponseDTO getItemByName(String itemName);
+
+    List<ItemGetResponseDTO> getItemListByNameWithMappsStruct(String itemName);
 }

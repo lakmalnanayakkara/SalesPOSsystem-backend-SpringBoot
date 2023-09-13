@@ -1,5 +1,9 @@
 package com.springApplication.SalesPOS.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 public class CustomerDTO {
     private int customerID;
     private String customerName;
