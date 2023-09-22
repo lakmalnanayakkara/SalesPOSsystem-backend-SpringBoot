@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class OrderDetailSaveRequestDTO {
-    private int orderDetailsID;
     private String itemName;
     private double qty;
     private double amount;
