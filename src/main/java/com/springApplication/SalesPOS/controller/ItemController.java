@@ -1,5 +1,6 @@
 package com.springApplication.SalesPOS.controller;
 
+import com.springApplication.SalesPOS.dto.paginated.PaginatedResponseItemDTO;
 import com.springApplication.SalesPOS.dto.request.ItemSaveRequestDTO;
 import com.springApplication.SalesPOS.dto.response.ItemGetResponseDTO;
 import com.springApplication.SalesPOS.service.ItemService;
@@ -39,13 +40,16 @@ public class ItemController {
         return response;
     }
     @GetMapping(
-            path = "/getByName",
-            params = "name"
+            path = "/get-by-activeStatus",
+            params = {"status","page","size"}
     )
-    public ResponseEntity<StandardResponse> getItemListByNameWithMappsStruct(@RequestParam(value = "name") String ItemName){
-        List<ItemGetResponseDTO> itemGetResponseDTOList = itemService.getItemListByNameWithMappsStruct(ItemName);
+    public ResponseEntity<StandardResponse> getItemListByNameWithMappsStruct(
+            @RequestParam(value = "status") boolean activeStatus,
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size){
+        PaginatedResponseItemDTO paginatedResponseItemDTO = itemService.getItemListByAtiveStatus(activeStatus,page,size);
         ResponseEntity<StandardResponse> response = new ResponseEntity<>(
-                new StandardResponse(200, "success", itemGetResponseDTOList),
+                new StandardResponse(200, "success", paginatedResponseItemDTO),
                 HttpStatus.OK
         );
         return response;

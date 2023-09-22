@@ -3,6 +3,7 @@ package com.springApplication.SalesPOS.service.impl;
 import com.springApplication.SalesPOS.dto.CustomerDTO;
 import com.springApplication.SalesPOS.dto.request.CustomerUpdateDTO;
 import com.springApplication.SalesPOS.entity.Customer;
+import com.springApplication.SalesPOS.exception.NotFoundException;
 import com.springApplication.SalesPOS.repo.CustomerRepo;
 import com.springApplication.SalesPOS.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,17 +81,21 @@ public class CustomerServiceIMPL implements CustomerService {
     public List<CustomerDTO> getAllCustomers() {
         List<Customer> getAllCustomers = customerRepo.findAll();
         List<CustomerDTO> customerDTOlist = new ArrayList<>();
-        for(Customer customer : getAllCustomers){
-            CustomerDTO customerDTO = new CustomerDTO(
-                    customer.getCustomerID(),
-                    customer.getCustomerName(),
-                    customer.getCustomerAddress(),
-                    customer.getCustomerSalary(),
-                    customer.getContactNumber(),
-                    customer.getCustomerNIC(),
-                    customer.isState()
-            );
-            customerDTOlist.add(customerDTO);
+        if(getAllCustomers.size()>0){
+            for(Customer customer : getAllCustomers){
+                CustomerDTO customerDTO = new CustomerDTO(
+                        customer.getCustomerID(),
+                        customer.getCustomerName(),
+                        customer.getCustomerAddress(),
+                        customer.getCustomerSalary(),
+                        customer.getContactNumber(),
+                        customer.getCustomerNIC(),
+                        customer.isState()
+                );
+                customerDTOlist.add(customerDTO);
+            }
+        }else {
+            throw new NotFoundException("No Customer Found");
         }
         return customerDTOlist;
     }

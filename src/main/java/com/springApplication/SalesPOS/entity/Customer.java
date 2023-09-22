@@ -3,6 +3,8 @@ package com.springApplication.SalesPOS.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name="customer")
 public class Customer {
@@ -22,6 +24,9 @@ public class Customer {
     private String customerNIC;
     @Column(name="active_state", columnDefinition ="TINYINT default 0")
     private boolean state;
+
+    @OneToMany(mappedBy="customer")
+    private Set<Orders> orders;
 
     public Customer() {
     }

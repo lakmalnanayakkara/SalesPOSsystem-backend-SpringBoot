@@ -4,6 +4,8 @@ import com.springApplication.SalesPOS.entity.enums.MeasuringUnitType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "item")
 @AllArgsConstructor
@@ -36,4 +38,7 @@ public class Item {
 
     @Column(name = "active_state", columnDefinition = "TINYINT default 0")
     private boolean activeState;
+
+    @OneToMany(mappedBy="item")
+    private Set<OrderDetails> orderDetailsSet;
 }

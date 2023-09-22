@@ -1,5 +1,6 @@
 package com.springApplication.SalesPOS.service;
 
+import com.springApplication.SalesPOS.dto.paginated.PaginatedResponseItemDTO;
 import com.springApplication.SalesPOS.dto.request.ItemSaveRequestDTO;
 import com.springApplication.SalesPOS.dto.response.ItemGetResponseDTO;
 
@@ -11,5 +12,5 @@ public interface ItemService {
 
     ItemGetResponseDTO getItemByName(String itemName);
 
-    List<ItemGetResponseDTO> getItemListByNameWithMappsStruct(String itemName);
+    PaginatedResponseItemDTO getItemListByAtiveStatus(boolean activeStatus, int page, int size);
 }
