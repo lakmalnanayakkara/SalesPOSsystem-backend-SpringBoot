@@ -29,6 +29,9 @@ public class Orders {
     @Column(name = "tot_amount", nullable = false)
     private double totAmount;
 
+    @Column(name = "active_state", columnDefinition = "TINYINT default 0")
+    private boolean activeState;
+
     @OneToMany(mappedBy="orders")
     private Set<OrderDetails> orderDetailsSet;
 

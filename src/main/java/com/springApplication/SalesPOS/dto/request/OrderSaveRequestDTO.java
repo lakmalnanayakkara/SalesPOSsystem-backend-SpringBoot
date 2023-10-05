@@ -17,5 +17,6 @@ public class OrderSaveRequestDTO {
     private int customer;
     private Date date;
     private double totAmount;
+    private boolean activeState;
     private List<OrderDetailSaveRequestDTO> orderDetailSaveRequestDTOList;
 }

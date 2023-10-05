@@ -39,6 +39,4 @@ public class Item {
     @Column(name = "active_state", columnDefinition = "TINYINT default 0")
     private boolean activeState;
 
-    @OneToMany(mappedBy="item")
-    private Set<OrderDetails> orderDetailsSet;
 }

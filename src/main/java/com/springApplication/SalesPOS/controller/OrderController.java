@@ -1,5 +1,7 @@
 package com.springApplication.SalesPOS.controller;
 
+import com.springApplication.SalesPOS.dto.paginated.PaginatedResponseItemDTO;
+import com.springApplication.SalesPOS.dto.paginated.PaginatedResponseOrderDTO;
 import com.springApplication.SalesPOS.dto.request.OrderSaveRequestDTO;
 import com.springApplication.SalesPOS.service.OrderService;
 import com.springApplication.SalesPOS.util.StandardResponse;
@@ -22,5 +24,29 @@ public class OrderController {
                 HttpStatus.OK
         );
         return response;
+    }
+
+    @GetMapping(
+            path = "getAllOrders",
+            params = {"stateType","page","size"})
+    public ResponseEntity<StandardResponse> getAllOrderDetails(
+            @RequestParam(value = "stateType") String stateType,
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size){
+
+        PaginatedResponseOrderDTO paginatedResponseOrderDTO = null;
+
+        if(stateType.equalsIgnoreCase("active") | stateType.equalsIgnoreCase("inactive")){
+            boolean status = stateType.equalsIgnoreCase("active") ? true :false;
+            paginatedResponseOrderDTO = orderService.getAllOrderDetails(status,page,size);
+        }
+
+        ResponseEntity<StandardResponse> response = new ResponseEntity<>(
+                new StandardResponse(200, "Success", paginatedResponseOrderDTO),
+                HttpStatus.OK
+        );
+
+        return response;
+
     }
 }
